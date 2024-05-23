@@ -1,2 +1,2 @@
 def func():
-    print(f'Hello')
+    return 'Hello'
