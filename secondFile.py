@@ -1,2 +1,2 @@
 def func():
-    print(f'world')
+    return 'world'
