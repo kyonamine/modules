@@ -1,3 +1,4 @@
+import streamlit as st
 import firstFile
 import secondFile
 # import snowflake.connector as sf
