@@ -1,35 +1,34 @@
-import streamlit as st
 import firstFile
 import secondFile
-import snowflake.connector as sf
 # from snowflake.snowpark.context import get_active_session
 
 def printout():
     f'{firstFile.func()} {secondFile.func()}'
 
-def snowflake():
-    # f'{st.secrets.connections.snowflake}'
-    # conn = st.connection("snowflake")
-    conn = sf.connect(
-        user = st.secrets["user"],
-        password = st.secrets["password"],
-        authenticator = 'https://yext.okta.com/',
-        account = st.secrets["account"],
-        role = st.secrets["role"] 
-    )
-    # st.write(conn)
-    return conn
+def check_password():
+    """Returns `True` if the user had the correct password."""
 
-def snowflake2():
-    sfConnection = snowflake()
-    sfq = sfConnection.cursor()
-    query = "select * from YEXT_DATALAKE.DB4_ALPHA.TAGS_LISTINGS where 1  and partner_id = 638 and location_id in (62365949)"
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if st.session_state["pw"] == st.secrets["pw"]:
+            st.session_state["password_correct"] = True
+            del st.session_state["pw"]  # don't store password
+        else:
+            st.session_state["password_correct"] = False
 
-    sfq.execute(query)
-    sfResult = sfq.fetchall()
-    # for row in df.itertuples():
-    st.write(f'{sfResult}')
-    return
-
-printout()
-snowflake2()
+    if "password_correct" not in st.session_state:
+        # First run, show input for password.
+        st.text_input(
+            "Password", type="password", on_change = password_entered, key = "pw"
+        )
+        return False
+    elif not st.session_state["password_correct"]:
+        # Password not correct, show input + error.
+        st.text_input(
+            "Password", type="password", on_change = password_entered, key = "pw"
+        )
+        st.error("😕 Password incorrect")
+        return False
+    else:
+        # Password correct.
+        return True
