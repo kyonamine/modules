@@ -36,3 +36,5 @@ def check_password():
 def multiOptionSelect(descriptionString, optionsList):
     tupleOptions = tuple(optionsList)
     return st.radio(descriptionString, tupleOptions)
+
+multiOptionSelect("Select an option", ["Option 1", "Option 2", "Option 3"])
