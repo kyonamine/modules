@@ -1,7 +1,7 @@
 import streamlit as st
 import firstFile
 import secondFile
-# import snowflake.connector as sf
+import snowflake.connector as sf
 # from snowflake.snowpark.context import get_active_session
 
 def printout():
