@@ -33,8 +33,4 @@ def check_password():
         # Password correct.
         return True
     
-def multiOptionSelect(descriptionString, optionsList):
-    tupleOptions = tuple(optionsList)
-    return st.radio(descriptionString, tupleOptions)
-
-multiOptionSelect("Select an option", ["Option 1", "Option 2", "Option 3"])
+printout()
