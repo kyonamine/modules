@@ -1,6 +1,7 @@
 import streamlit as st
 import firstFile
 import secondFile
+import pandas as pd
 
 def printout():
     f'{firstFile.func()} {secondFile.func()}'
@@ -33,4 +34,17 @@ def check_password():
         # Password correct.
         return True
     
+def uploadFile(descriptionStr):
+    uploaded_file = st.file_uploader(descriptionStr, type = ['csv', 'txt'])
+    if uploaded_file is not None:
+        dataframe = pd.read_csv(uploaded_file, dtype = {'Yext ID': str})
+        dataframe = dataframe.dropna()
+        dataframe = dataframe.astype(str)
+        st.write(dataframe)
+    return dataframe
+
+def parseFile(df):
+    listYextIds = df['Yext ID'].tolist()
+    return listYextIds
+
 printout()
