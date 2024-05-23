@@ -12,7 +12,7 @@ def snowflake():
     # conn = st.connection("snowflake")
     conn = sf.connect(
         user = st.secrets["user"],
-        authenticator = "externalbrowser",
+        password = st.secrets["password"],
         account = st.secrets["account"],
         role = st.secrets["role"] 
     )
