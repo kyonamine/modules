@@ -1,10 +1,15 @@
 import firstFile
 import secondFile
 import snowflake.connector as sf
+from snowflake.snowpark.context import get_active_session
 
 def printout():
     f'{firstFile.func()} {secondFile.func()}'
 
+def snowflake():
+    session = get_active_session()
+    f'{session}'
+    return session
 
 
 def connectToSF():
@@ -44,4 +49,7 @@ def connectToSF():
     return sfConnection
 
 printout()
-connectToSF()
+# connectToSF()
+
+
+snowflake()
