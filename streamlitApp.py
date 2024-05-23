@@ -1,6 +1,6 @@
+import streamlit as st
 import firstFile
 import secondFile
-# from snowflake.snowpark.context import get_active_session
 
 def printout():
     f'{firstFile.func()} {secondFile.func()}'
@@ -32,3 +32,7 @@ def check_password():
     else:
         # Password correct.
         return True
+    
+def multiOptionSelect(descriptionString, optionsList):
+    tupleOptions = tuple(optionsList)
+    return st.radio(descriptionString, tupleOptions)
