@@ -13,6 +13,7 @@ def snowflake():
     conn = sf.connect(
         user = st.secrets["user"],
         password = st.secrets["password"],
+        authenticator = 'https://yext.okta.com/'
         account = st.secrets["account"],
         role = st.secrets["role"] 
     )
