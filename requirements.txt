@@ -2,5 +2,5 @@ snowflake-snowpark-python
 pandas
 numpy
 requests
-json
+# json
 datetime
